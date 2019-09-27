@@ -1,0 +1,113 @@
+enable
+configure terminal
+hostname SW-11
+banner motd "ACESSO APENAS PARA PESSOAS QUE FIZERAM TECNICO EM REDES DE COMPUTADORES NO SENAI"
+enable secret Senha20
+username ruthbraga privilege 15 secret Senha20
+username ruthbraga privilege 15 secret Senha20
+ip domain-name rede1.local
+crypto key generate rsa general-keys modulus 1024
+line vty 0 15
+login local
+transport input ssh
+exec-timeout 5
+exit
+line console 0
+exec-timeout 5
+login local
+exit
+interface vlan 100
+ip address 172.16.        (penultimo ip valido)
+description INTERFACE DE GERENCIAMENTO
+no shutdown
+exit
+ip default-gateway 172.16.0.1 
+service password-encryption
+do wr
+
+
+enable
+configure terminal
+hostname SW-12
+banner motd "ACESSO APENAS PARA PESSOAS QUE FIZERAM TECNICO EM REDES DE COMPUTADORES NO SENAI"
+enable secret Senha20
+username ruthbraga privilege 15 secret Senha20
+username ruthbraga privilege 15 secret Senha20
+ip domain-name rede1.local
+crypto key generate rsa general-keys modulus 1024
+line vty 0 15
+login local
+transport input ssh
+exec-timeout 5
+exit
+line console 0
+exec-timeout 5
+login local
+exit
+interface vlan 100
+ip address 172.16.        (antipenultimo ip valido)
+description INTERFACE DE GERENCIAMENTO
+no shutdown
+exit
+ip default-gateway 172.16.0.1 
+service password-encryption
+do wr
+
+enable
+configure terminal
+hostname SW-CORE-11
+banner motd "ACESSO APENAS PARA PESSOAS QUE FIZERAM TECNICO EM REDES DE COMPUTADORES NO SENAI"
+enable secret Senha20
+username ruthbraga privilege 15 secret Senha20
+username ruthbraga privilege 15 secret Senha20
+ip domain-name rede1.local
+crypto key generate rsa general-keys modulus 1024
+line vty 0 15
+login local
+transport input ssh
+exec-timeout 5
+exit
+line console 0
+exec-timeout 5
+login local
+exit
+interface vlan 100
+ip address 172.16.        (ultimo ip valido)
+description INTERFACE DE GERENCIAMENTO
+no shutdown
+exit
+ip default-gateway 172.16.0.1 
+service password-encryption
+do wr
+
+enable
+configure terminal
+hostname RT-11
+banner motd "ACESSO APENAS PARA PESSOAS QUE FIZERAM TECNICO EM REDES DE COMPUTADORES NO SENAI"
+enable secret Senhada20
+security passwords min-length 8
+login block-for 180 attempts 3 within 60
+username ruthbraga privilege 15 secret Senha20
+username ruthbraga privilege 15 secret Senha20
+ip domain-name rede1.local
+crypto key generate rsa general-keys modulus 1024
+line vty 0 15
+login local
+transport input ssh
+exec-timeout 5
+exit
+line console 0
+exec-timeout 5
+login local
+exit
+service password-encryption
+interface vlan 100
+ip address 192.16.0.1 255.255.254.0
+description REDE1 - 192.16.0.0/23
+no shutdown
+do wr
+
+PC-11 172.16.10.10 255.255.254.0
+PC-12 172.16.20.10 255.255.254.0
+PC-13 172.16.10.11 255.255.254.0
+PC-14 172.16.20.11 255.255.254.0

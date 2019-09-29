@@ -1,0 +1,183 @@
+RT-31
+
+
+enable
+configure terminal
+hostname RT-31
+banner motd "ACESSO APENAS PARA PESSOAS QUE FIZERAM TECNICO EM REDES DE COMPUTADORES"
+enable secret senha209
+security passwords min-length 8
+login block-for 4 attempts 7 within 10
+username ruthbraga privilege 15 secret Senha209
+username ruthbraga privilege 1 secret Senha209
+ip domain-name rede1.local
+crypto key generate rsa general-keys modulus 1024
+line vty 0 15
+login local
+transport input ssh
+exec-timeout 5
+exit
+line console 0
+password senha209
+login
+exec-timeout 5
+login local
+exit
+service password-encryption
+vlan 100
+interface vlan 100
+ip address 192.16.4.1 255.255.254.0
+description REDE1 - 192.16.2.0/23
+no shutdown
+do wr
+exit
+int gig 0/1
+ip address 172.16.5.254 255.255.254.0
+no shutdown
+do wr
+interface serial 0/0/1 
+ip address 200.18.189.2 255.255.255.254
+no shutdown 
+do wr
+interface serial 0/0/0
+ip address 200.18.189.9 255.255.255.254
+no shutdown
+do wr
+
+
+SW-CORE-31
+
+
+enable
+configure terminal
+hostname SW-CORE-31
+banner motd "ACESSO APENAS PARA PESSOAS QUE FIZERAM TECNICO EM REDES DE COMPUTADORES"
+enable secret Senha20
+username ruthbraga privilege 15 secret Senha20
+username ruthbraga privilege 1 secret Senha20
+ip domain-name rede1.local
+crypto key generate rsa general-keys modulus 1024
+line vty 0 15
+login local
+transport input ssh
+exec-timeout 5
+exit
+line console 0
+password senha20
+login
+exec-timeout 5
+login local
+exit
+vlan 100
+interface vlan 100
+ip address 172.16.5.254 255.255.254.0
+description INTERFACE DE GERENCIAMENTO
+no shutdown
+exit
+int g0/1
+switchport mode trunk
+switchport trunk allowed vlan 10,20,100,99
+description PORTA TRUNK
+ip default-gateway 172.16.4.1
+service password-encryption
+do wr
+
+
+SW-31
+
+
+enable
+configure terminal
+hostname SW-31
+banner motd "ACESSO APENAS PARA PESSOAS QUE FIZERAM TECNICO EM REDES DE COMPUTADORES"
+enable secret Senha20
+username ruthbraga privilege 15 secret Senha20
+username ruthbraga privilege 1 secret Senha20
+ip domain-name rede1.local
+crypto key generate rsa general-keys modulus 1024
+line vty 0 15
+login local
+transport input ssh
+exec-timeout 5
+exit
+line console 0
+password senha20
+login
+exec-timeout 5
+login local
+exit
+vlan 100
+interface vlan 100
+ip address 172.16.5.252 255.255.254.0
+description INTERFACE DE GERENCIAMENTO
+no shutdown
+exit
+ip default-gateway 172.16.4.1 
+service password-encryption
+do wr
+
+
+SW-32
+
+
+enable
+configure terminal
+hostname SW-32
+banner motd "ACESSO APENAS PARA PESSOAS QUE FIZERAM TECNICO EM REDES DE COMPUTADORES"
+enable secret senha20
+username ruthbraga privilege 15 secret Senha20
+username ruthbraga privilege 1 secret Senha20
+ip domain-name rede1.local
+crypto key generate rsa general-keys modulus 1024
+line vty 0 15
+login local
+transport input ssh
+exec-timeout 5
+exit
+line console 0
+password senha20
+login
+exec-timeout 5
+login local
+exit
+vlan 100
+interface vlan 100
+ip address 172.16.5.250 255.255.254.0
+description INTERFACE DE GERENCIAMENTO
+no shutdown
+exit
+ip default-gateway 172.16.4.1 
+service password-encryption
+do wr
+
+
+SW-22
+
+
+enable
+configure terminal
+hostname SW-22
+banner motd "ACESSO APENAS PARA PESSOAS QUE FIZERAM TECNICO EM REDES DE COMPUTADORES"
+enable secret senha20
+username ruthbraga privilege 15 secret Senha20
+username ruthbraga privilege 1 secret Senha20
+ip domain-name rede1.local
+crypto key generate rsa general-keys modulus 1024
+line vty 0 15
+login local
+transport input ssh
+exec-timeout 5
+exit
+line console 0
+exec-timeout 5
+login local
+exit
+vlan 100
+interface vlan 100
+ip address 172.16.3.250 255.255.254.0
+description INTERFACE DE GERENCIAMENTO
+no shutdown
+exit
+ip default-gateway 172.16.2.1 
+service password-encryption
+do wr
